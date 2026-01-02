@@ -4,6 +4,7 @@ import { onMounted, ref } from "vue";
 
 const name = ref<string>("");
 const error = ref<any>(null);
+const friendship = ref<any>(null);
 
 // Import runtime config for env variables
 const runtimeConfig = useRuntimeConfig();
@@ -35,6 +36,11 @@ onMounted(async () => {
     const profile = await liff.getProfile();
     name.value = profile.displayName;
     console.log("User profile:", profile);
+
+
+    const friendshipStatus = await liff.getFriendship();
+    console.log("Friendship status:", friendship);
+      friendship.value = friendshipStatus.friendFlag;
   } catch (err) {
     error.value = err;
     console.error("LIFF error:", err);
@@ -47,7 +53,7 @@ onMounted(async () => {
     <h1 class="home__title">Welcome to Twjoin F2E</h1>
 
     <p>Hi {{ name }}<br /></p>
-    <p>Error: {{ error }}</p>
+    <p>Friend Ship: {{ friendship }}</p>
   </div>
 </template>
 
