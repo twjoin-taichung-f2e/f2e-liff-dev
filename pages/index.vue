@@ -53,6 +53,7 @@ const sendToChatroom = async () => {
   ])
   .then(() => {
     console.log("message sent");
+    liff.closeWindow();
   })
   .catch((err) => {
     console.log("error", err);
@@ -66,7 +67,7 @@ const sendToChatroom = async () => {
 
     <p>Hi {{ name }}<br /></p>
     <img :src="pictureUrl" alt="test" height="100" width="100" />
-    
+
     <button @click="sendToChatroom">Send to Chatroom</button>
   </div>
 </template>
