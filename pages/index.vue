@@ -42,6 +42,22 @@ onMounted(async () => {
     console.error("LIFF error:", err);
   }
 });
+
+const sendToChatroom = async () => {
+  liff
+  .sendMessages([
+    {
+      type: "text",
+      text: "測試貓貓喝咖啡",
+    },
+  ])
+  .then(() => {
+    console.log("message sent");
+  })
+  .catch((err) => {
+    console.log("error", err);
+  });
+}
 </script>
 
 <template>
@@ -50,6 +66,8 @@ onMounted(async () => {
 
     <p>Hi {{ name }}<br /></p>
     <img :src="pictureUrl" alt="test" height="100" width="100" />
+    
+    <button @click="sendToChatroom">Send to Chatroom</button>
   </div>
 </template>
 
