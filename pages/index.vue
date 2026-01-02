@@ -49,7 +49,7 @@ onMounted(async () => {
     <h1 class="home__title">Welcome to Twjoin F2E</h1>
 
     <p>Hi {{ name }}<br /></p>
-    <img :src="pictureUrl" alt="test" />
+    <img :src="pictureUrl" alt="test" height="100" width="100" />
   </div>
 </template>
 
