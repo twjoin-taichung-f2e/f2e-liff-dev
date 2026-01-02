@@ -3,8 +3,8 @@ import liff from "@line/liff";
 import { onMounted, ref } from "vue";
 
 const name = ref<string>("");
+const pictureUrl = ref<string>("");
 const error = ref<any>(null);
-const friendship = ref<any>(null);
 
 // Import runtime config for env variables
 const runtimeConfig = useRuntimeConfig();
@@ -35,12 +35,8 @@ onMounted(async () => {
     // 取得使用者資訊
     const profile = await liff.getProfile();
     name.value = profile.displayName;
+    pictureUrl.value = profile.pictureUrl || "";
     console.log("User profile:", profile);
-
-
-    const friendshipStatus = await liff.getFriendship();
-    console.log("Friendship status:", friendship);
-      friendship.value = friendshipStatus.friendFlag;
   } catch (err) {
     error.value = err;
     console.error("LIFF error:", err);
@@ -53,7 +49,7 @@ onMounted(async () => {
     <h1 class="home__title">Welcome to Twjoin F2E</h1>
 
     <p>Hi {{ name }}<br /></p>
-    <p>Friend Ship: {{ friendship }}</p>
+    <img :src="pictureUrl" alt="test" />
   </div>
 </template>
 
