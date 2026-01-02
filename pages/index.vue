@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import liff from '@line/liff';
-  import { onMounted } from 'vue';
+import { onMounted } from 'vue';
 
-  const profile = ref<any>(null);
+  const name = ref<string>('');
   
   // Import runtime config for env variables
   const runtimeConfig = useRuntimeConfig();
@@ -21,7 +21,15 @@
     console.log('LIFF SDK version', liff.getVersion());
 
 
-    profile.value = await liff.getProfile()
+
+    liff
+  .getProfile()
+  .then((profile) => {
+    name.value = profile.displayName;
+  })
+  .catch((err) => {
+    console.log("error", err);
+  });
   })
   </script>
 
